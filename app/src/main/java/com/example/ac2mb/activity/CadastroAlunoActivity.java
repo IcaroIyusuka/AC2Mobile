@@ -77,15 +77,9 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("CadastroAlunoActivity", "onDestroy called");
-    }
-
     private void buscarCep() {
         String cep = etCep.getText().toString().trim();
-        if (!cep.isEmpty() && cep.length() == 8) {  // Verifique se o CEP tem 8 caracteres
+        if (!cep.isEmpty() && cep.length() == 8) {
             Call<Endereco> call = viaCepService.getEndereco(cep);
             call.enqueue(new Callback<Endereco>() {
                 @Override
@@ -113,8 +107,6 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     }
 
     private void salvarAluno() {
-        Log.d("salvarAluno", "Iniciando método salvarAluno");
-
         String raText = etRa.getText().toString().trim();
         String nome = etNome.getText().toString().trim();
         String cep = etCep.getText().toString().trim();
@@ -129,36 +121,30 @@ public class CadastroAlunoActivity extends AppCompatActivity {
             return;
         }
 
-        int ra = Integer.parseInt(raText);
+        int ra;
+        try {
+            ra = Integer.parseInt(raText);
+        } catch (NumberFormatException e) {
+            Toast.makeText(CadastroAlunoActivity.this, "RA inválido", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Aluno aluno = new Aluno(ra, nome, cep, logradouro, complemento, bairro, cidade, uf);
-        Log.d("salvarAluno", "Aluno criado: " + aluno);
 
         Call<Aluno> call = alunoService.salvarAluno(aluno);
         call.enqueue(new Callback<Aluno>() {
             @Override
             public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                if (response.isSuccessful()) {
-                    Log.d("salvarAluno", "Aluno salvo com sucesso");
+                if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(CadastroAlunoActivity.this, "Aluno salvo com sucesso", Toast.LENGTH_SHORT).show();
-                    // Limpar os campos após salvar
-                    etRa.setText("");
-                    etNome.setText("");
-                    etCep.setText("");
-                    etLogradouro.setText("");
-                    etComplemento.setText("");
-                    etBairro.setText("");
-                    etCidade.setText("");
-                    etUf.setText("");
+                    finish();
                 } else {
-                    Log.e("salvarAluno", "Erro ao salvar aluno: " + response.message());
                     Toast.makeText(CadastroAlunoActivity.this, "Erro ao salvar aluno", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Aluno> call, Throwable t) {
-                Log.e("salvarAluno", "Erro ao salvar aluno: ", t);
                 Toast.makeText(CadastroAlunoActivity.this, "Erro ao salvar aluno", Toast.LENGTH_SHORT).show();
             }
         });

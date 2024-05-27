@@ -7,7 +7,7 @@ public class Endereco {
     private String localidade;
     private String uf;
 
-    // Getters e Setters
+
     public String getLogradouro() { return logradouro; }
     public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
 

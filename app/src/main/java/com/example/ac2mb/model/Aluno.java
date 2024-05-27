@@ -10,10 +10,9 @@ public class Aluno {
     private String cidade;
     private String uf;
 
-    // Construtor padrão
-    public Aluno() {}
+    public Aluno() {
+    }
 
-    // Construtor completo
     public Aluno(int ra, String nome, String cep, String logradouro, String complemento, String bairro, String cidade, String uf) {
         this.ra = ra;
         this.nome = nome;
@@ -25,28 +24,67 @@ public class Aluno {
         this.uf = uf;
     }
 
-    // Getters e Setters
-    public int getRa() { return ra; }
-    public void setRa(int ra) { this.ra = ra; }
+    public int getRa() {
+        return ra;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setRa(int ra) {
+        this.ra = ra;
+    }
 
-    public String getCep() { return cep; }
-    public void setCep(String cep) { this.cep = cep; }
+    public String getNome() {
+        return nome;
+    }
 
-    public String getLogradouro() { return logradouro; }
-    public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getComplemento() { return complemento; }
-    public void setComplemento(String complemento) { this.complemento = complemento; }
+    public String getCep() {
+        return cep;
+    }
 
-    public String getBairro() { return bairro; }
-    public void setBairro(String bairro) { this.bairro = bairro; }
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
 
-    public String getCidade() { return cidade; }
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-    public String getUf() { return uf; }
-    public void setUf(String uf) { this.uf = uf; }
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
 }
